@@ -5,19 +5,20 @@
 #include <stdio.h>
 
 struct frame {
-    uint32_t virtual_page_number;
-    int count; // will be used by LRU policy
+  uint32_t virtual_page_number;
+  int count; // will be used by LRU policy
 };
 extern struct frame *frame_arr;
 
 struct inner_table_entry {
-    uint32_t frame_no;
-    int valid_bit;
+  uint32_t frame_no;
+  int valid_bit;
 };
-static const struct inner_table_entry DEFAULT_INNER_TABLE_ENTRY = {.valid_bit = 0};
+static const struct inner_table_entry DEFAULT_INNER_TABLE_ENTRY = {.valid_bit =
+                                                                       0};
 
 struct outer_table_entry {
-    struct inner_table_entry *ptr_inner_table;
+  struct inner_table_entry *ptr_inner_table;
 };
 extern struct outer_table_entry outer_table[1024]; // indexed by p1
 
